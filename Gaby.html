@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGM Studio - Belleza Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f8e3e7;
+            --secondary: #d4a5a5;
+            --accent: #c06c84;
+            --dark: #6c5b7b;
+            --light: #fff9fb;
+            --text: #4a4a4a;
+            --gold: #d4af37;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(192, 108, 132, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(108, 91, 123, 0.4);
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+        }
+        
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),URL("peinado.jpg") center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin-top: 60px;
+            background-image: src="peinado.jpg";
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        }
+        
+        .contact-btn i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background-color: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            text-align: center;
+            padding: 40px 25px;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+        
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            margin-bottom: 20px;
+        }
+        
+        /* Service Gallery */
+        .service-gallery {
+            padding: 80px 0;
+            background-color: var(--primary);
+        }
+        
+        .service-section {
+            margin-bottom: 80px;
+        }
+        
+        .service-section h3 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .service-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .gallery-row {
+    display: flex;
+    flex-wrap: wrap; /* Cambia a 'wrap' si quieres que los elementos bajen en móviles */
+    justify-content: flex-start; /* O usa 'center' si prefieres centrado */
+    gap: 25px;
+    margin-top: 30px;
+}
+
+        
+        .gallery-item {
+            
+            min-width: 300px;
+            max-width: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease;
+        }
+        
+        .gallery-item:hover {
+            
+        }
+        
+        .gallery-item img {
+            display:flex;
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-caption {
+            padding: 15px;
+            background: white;
+            text-align: center;
+        }
+        
+        /* Location Section */
+        .location {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .location-container {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .map-container {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 450px;
+        }
+        
+        .location-info {
+            flex: 1;
+        }
+        
+        .info-box {
+            background-color: var(--primary);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .info-box h3 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-box h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .contact-info-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            min-width: 30px;
+            margin-top: 5px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact h2 {
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .social-media a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background-color: white;
+            border-radius: 50%;
+            color: var(--accent);
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .social-media a:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        .social-media .instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+        
+        .social-media .whatsapp:hover {
+            background-color: #25D366;
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2a2438;
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .location-container {
+                flex-direction: column;
+            }
+            
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .map-container {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .service-card {
+                padding: 30px 20px;
+            }
+            
+            .hero {
+                height: 85vh;
+            }
+            
+            .gallery-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .gallery-item {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-spa"></i>
+                <h1>LGM Studio</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#ubicacion">Ubicación</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h2>Belleza Profesional a Tu Alcance</h2>
+            <p>Servicios de depilación, maquillaje, peinado y alquiler de vestidos para que luzcas radiante en cada ocasión</p>
+            
+            
+            <div class="contact-buttons">
+                <a href="https://wa.me/5356164805" class="contact-btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Reservar por WhatsApp
+                </a>
+                <a href="https://instagram.com/iamgaby_sn" class="contact-btn btn-instagram" target="_blank">
+                    <i class="fab fa-instagram"></i> @iamgaby_sn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <h3>Depilaciones con Cera</h3>
+                    <p>Depilación profesional con cera de alta calidad para una piel suave y sin vello. Resultados duraderos y sin irritación.</p>
+                    
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Tintes de Henna en Cejas</h3>
+                    <p>Tintes naturales de henna para definir y resaltar tus cejas. Resultados naturales que duran varias semanas.</p>
+                   
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Maquillaje y Peinado</h3>
+                    <p>Transformamos tu look para bodas, fiestas y eventos especiales. Realzamos tu belleza natural con técnicas profesionales.</p>
+                    
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Alquiler de Vestidos</h3>
+                    <p>Elegante colección de vestidos para ocasiones especiales. Variedad de tallas y estilos para que encuentres tu look perfecto.</p>
+                    
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Servicio a Domicilio</h3>
+                    <p>Llevamos la belleza hasta tu hogar. Servicios de peluquería, maquillaje y depilación en la comodidad de tu casa.</p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Gallery -->
+    <section class="service-gallery" id="galeria">
+        <div class="container">
+            <div class="service-section">
+                <h3>Depilaciones con Cera</h3>
+                <div class="gallery-row">
+                    <div class="gallery-item">
+                        <img src="Cejas1.jpg" alt="Depilación profesional">
+                        
+                            
+                        </div>
+                    
+                    <div class="gallery-item">
+                        <img src="c20d176fb17c61a5f8d4a474b11b0d11-ppage600.jpg" alt="Depilación de cejas ">
+           </div>
+           
+                          <div class="gallery-item">
+                        <img src="Cejas2.jpg" alt="Tinte de cejas">
+                        
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <div class="service-section">
+                <h3>Maquillaje y Peinado</h3>
+                <div class="gallery-row">
+                    <div class="gallery-item">
+                        <img src="peinado.jpg" alt="Maquillaje para bodas">
+                      
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Peinado2.jpg" alt="Peinado elegante">
+                        
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Peinado3.jpg" alt="Maquillaje profesional">
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-section">
+                <h3>Alquiler de Vestidos</h3>
+                <div class="gallery-row">
+                    <div class="gallery-item">
+                        <img src="vestido.jpg" >
+                       
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=736&q=80" alt="Vestido de fiesta">
+                     
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Colección de vestidos">
+                        <div class="gallery-caption">
+                            <p>Variedad de estilos y tallas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location" id="ubicacion">
+        <div class="container">
+            <h2 class="section-title">Visítanos</h2>
+            <div class="location-container">
+                <div class="map-container">
+                    <!-- Google Maps Embed with Updated Coordinates -->
+                    
+                <div class="location-info">
+                    <div class="info-box">
+                        <h3><i class="fas fa-map-marker-alt"></i> Dirección</h3>
+                        <p>Calle 9 #2 E Bohorque<br>Baracoa, Guantánamo<br>Cuba</p>
+                    </div>
+                    <div class="info-box">
+                        <h3><i class="fas fa-clock"></i> Horario de Atención</h3>
+                        <p>Lunes a Viernes: 9:00 AM - 7:00 PM<br>Sábados: 10:00 AM - 5:00 PM<br>Domingos: Cerrado</p>
+                    </div>
+                    <div class="info-box">
+                        <h3><i class="fas fa-phone-alt"></i> Contacto Directo</h3>
+                        <div class="contact-info-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p>Teléfono: <a href="tel:56164805">56164805</a></p>
+                                <p>Llamadas y WhatsApp</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fab fa-instagram"></i>
+                            <div>
+                                <p>Instagram: <a href="https://instagram.com/iamgaby_sn" target="_blank">@iamgaby_sn</a></p>
+                                <p>Siguenos en Instagram.</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="container contact-container">
+            <h2 class="section-title">Contáctanos</h2>
+            <p>¿Lista para lucir radiante en tu próximo evento? Contáctanos para reservar tu cita o solicitar más información sobre nuestros servicios.</p>
+            
+            <div class="contact-buttons">
+                <a href="https://wa.me/5356164805" class="contact-btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp: 56164805
+                </a>
+                <a href="https://instagram.com/iamgaby_sn" class="contact-btn btn-instagram" target="_blank">
+                    <i class="fab fa-instagram"></i> Instagram: @iamgaby_sn
+                </a>
+            </div>
+            
+            <div class="social-media">
+                   
+                <a href="tel:56164805" class="phone">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/?link=https://www.google.com/maps/place/20%C2%B019'42.0%22N+74%C2%B029'08.7%22W/@20.328338,-74.4887272,17z/data=!3m1!4b1!4m4!3m3!8m2!3d20.328338!4d-74.486457?entry=ttu" class="map" target="_blank">
+                    <i class="fas fa-map-marker-alt"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <i class="fas fa-spa"></i>
+            </div>
+            <h3>LGM Studio</h3>
+            <p>Belleza profesional en Baracoa, Guantánamo</p>
+            
+            <ul class="footer-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#ubicacion">Ubicación</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            
+            <div class="social-media">
+                
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 LGM Studio. Todos los derechos reservados.</p>
+                <p>Web desarrollada por Osiel</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
