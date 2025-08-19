@@ -1,0 +1,111 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  <style>/* Navbar Styles */
+        header {
+            background: var(--color-navbar);
+            color: white;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            font-size: 2rem;
+            color: var(--color-accent);
+        }
+        
+        .logo span {
+            color: var(--color-accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+   </style>
+   <body>
+       
+       <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>Osiel</span>Dev
+                </a>
+                <ul class="nav-links">
+                    <li><a href="Planes.html">Planes</a></li>
+                    <li><a href="Blog.html">Preguntas Frecuentes</a></li>
+                    <li><a href="Portafolio.html">Portafolio</a></li>
+                    
+                </ul>
+                
+                  
+                
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i><p>ueieififif</p>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+   
+    
+    
+    </body>

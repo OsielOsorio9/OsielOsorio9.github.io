@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OsielDev - Desarrollo Web Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-primary: #2563eb;
+            --color-secondary: #1e40af;
+            --color-accent: #10b981;
+            --color-light: #f8fafc;
+            --color-dark: #1e293b;
+            --color-navbar: #1e293b;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--color-dark);
+            line-height: 1.6;
+        }
+        
+        /* Navbar Styles */
+        header {
+            background: var(--color-navbar);
+            color: white;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            font-size: 2rem;
+            color: var(--color-accent);
+        }
+        
+        .logo span {
+            color: var(--color-accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--color-accent);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            background: #0da271;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--color-secondary);
+            font-size: 2.5rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--color-accent);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 41, 59, 0.8), rgba(30, 41, 59, 0.9)), url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 8rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        /* Tarjetas de precios */
+        .pricing-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card.featured {
+            border-top: 5px solid var(--color-accent);
+        }
+        
+        .pricing-card.featured::before {
+            content: "MÁS POPULAR";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--color-accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 0 0 0 8px;
+        }
+        
+        .price {
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+            color: var(--color-primary);
+        }
+        
+        .price small {
+            font-size: 1.1rem;
+            font-weight: normal;
+            color: #64748b;
+        }
+        
+        .savings-badge {
+            background: #ffeb3b;
+            color: #333;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+        
+        .features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .features li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .features li::before {
+            content: "✓";
+            color: var(--color-accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* Beneficios */
+        .benefits {
+            background: var(--color-light);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Contacto */
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+            color: var(--color-dark);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--color-primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.8rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--color-dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--color-accent);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .form-row {
+                flex-direction: column;
+                gap: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--color-navbar);
+                padding: 1.5rem 0;
+                box-shadow: var(--shadow);
+                text-align: center;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .pricing-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .pricing-card {
+                margin-bottom: 2.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        /* WhatsApp button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>Osiel</span>Dev
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="#faq">Preguntas Frecuentes</a></li>
+                    
+                    </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in">Desarrollo Web Profesional</h1>
+            <p class="fade-in delay-1">Transformo tus ideas en sitios web atractivos y funcionales con planes accesibles y opciones de hosting económico</p>
+            <a href="#contact" class="btn fade-in delay-2">Solicitar Presupuesto</a>
+        </div>
+    </section>
+    
+    <!-- Desarrollo Web -->
+    <section id="development">
+        <div class="container">
+            <h2 class="section-title">Planes de Desarrollo Web</h2>
+            <div class="pricing-container">
+                <div class="pricing-card fade-in">
+                    <h3>Página Web Básica</h3>
+                    <div class="price">$3,000 <small>CUP</small></div>
+                    <ul class="features">
+                        <li>Diseño responsive (adaptable a móviles)</li>
+                        <li>Hasta 5 secciones</li>
+                        <li>Formulario de contacto</li>
+                        <li>Optimización básica SEO</li>
+                        <li>Integración con redes sociales</li>
+                        <li>Entrega en 7-10 días</li>
+                        <li>Actualizaciones de por vida</li>
+                    </ul>
+                    <a href="#contact" class="btn">Seleccionar Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Hosting -->
+    <section id="hosting" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Planes de Hosting</h2>
+            <div class="pricing-container">
+                <div class="pricing-card fade-in">
+                    <h3>Plan Mensual</h3>
+                    <div class="price">$700 <small>CUP/mes</small></div>
+                    <ul class="features">
+                        <li>Alojamiento web de alta velocidad</li>
+                        
+                        <li>Soporte técnico 24/7</li>
+                        <li>Backups diarios</li>
+                        
+                        
+                        <li>Dominio incluido</li>
+                    </ul>
+                    <a href="#contact" class="btn">Seleccionar Plan</a>
+                </div>
+                
+                <div class="pricing-card featured fade-in delay-1">
+                    <h3>Plan Anual</h3>
+                    <div class="price">$7,200 <small>CUP/año</small></div>
+                    <div class="savings-badge">Ahorras $1,200</div>
+                    <ul class="features">
+                        <li>Alojamiento web de alta velocidad</li>
+                        <li>Compra por un Año y recibe un generoso descuento 
+                        <li><strong>2 meses gratis</strong></li>
+                    </ul>
+                    <a href="#contact" class="btn">Seleccionar Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Beneficios -->
+    <section id="benefits">
+        <div class="container">
+            <h2 class="section-title">Beneficios de mi Servicio</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>Rápido y Eficiente</h3>
+                    <p>Entrega rápida sin comprometer la calidad del producto final.</p>
+                </div>
+                <div class="benefit-item fade-in delay-1">
+                    <div class="benefit-icon">💼</div>
+                    <h3>Profesional</h3>
+                    <p>Diseños modernos y profesionales que generan confianza.</p>
+                </div>
+                <div class="benefit-item fade-in delay-2">
+                    <div class="benefit-icon">📱</div>
+                    <h3>Responsive</h3>
+                    <p>Tu sitio web se verá perfecto en cualquier dispositivo.</p>
+                </div>
+                <div class="benefit-item fade-in delay-3">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3>Seguro</h3>
+                    <p>Implemento las mejores prácticas de seguridad web.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contacto -->
+    <section id="contact" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nombre completo</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="plan">Selecciona un plan</label>
+                            <select id="plan" required>
+                                <option value="">-- Selecciona una opción --</option>
+                                <option value="Página Web Básica - $3,000">Página Web Básica - $3,000</option>
+                                <option value="Hosting Mensual - $700/mes">Hosting Mensual - $700/mes</option>
+                                <option value="Hosting Anual - $7,200/año">Hosting Anual - $7,200/año</option>
+                                <option value="Paquete Completo (Web + Hosting Anual)">Paquete Completo (Web + Hosting Anual)</option>
+                                <option value="Otro">Otro (especificar en mensaje)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="website-type">Tipo de sitio web</label>
+                            <select id="website-type">
+                                <option value="">-- Selecciona una opción --</option>
+                                <option value="Sitio Corporativo">Sitio Corporativo</option>
+                                <option value="Tienda Online">Tienda Online</option>
+                                <option value="Portafolio Personal">Portafolio Personal</option>
+                                <option value="Blog">Blog</option>
+                                <option value="Web para promocionar tu sitio">Web para promocionar tu sitio </option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="details">Detalles de tu proyecto</label>
+                        <textarea id="details" rows="4" placeholder="Describe los detalles de tu proyecto, características que necesitas, etc."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje adicional</label>
+                        <textarea id="message" rows="4" placeholder="Any additional information you want to include"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Enviar por WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>Osiel</span>Dev
+                </div>
+                <p>Desarrollo web profesional </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p>&copy; 2023 OsielDev - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5351196751?text=Hola,%20estoy%20interesado%20en%20sus%20servicios%20de%20desarrollo%20web" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Toggle menu móvil
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Formulario a WhatsApp
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener valores del formulario
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const plan = document.getElementById('plan').value;
+            const websiteType = document.getElementById('website-type').value;
+            const details = document.getElementById('details').value;
+            const message = document.getElementById('message').value;
+            
+            // Crear mensaje para WhatsApp
+            let whatsappMessage = `Hola, estoy interesado en sus servicios de desarrollo web.%0A%0A`;
+            whatsappMessage += `*Nombre:* ${name}%0A`;
+            whatsappMessage += `*Email:* ${email}%0A`;
+            whatsappMessage += `*Plan seleccionado:* ${plan}%0A`;
+            
+            if (websiteType) {
+                whatsappMessage += `*Tipo de sitio web:* ${websiteType}%0A`;
+            }
+            
+            if (details) {
+                whatsappMessage += `*Detalles del proyecto:* ${details}%0A`;
+            }
+            
+            if (message) {
+                whatsappMessage += `*Mensaje adicional:* ${message}%0A`;
+            }
+            
+            // Abrir WhatsApp con el mensaje
+            window.open(`https://wa.me/5351196751?text=${whatsappMessage}`, '_blank');
+        });
+        
+        // Animación al hacer scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
